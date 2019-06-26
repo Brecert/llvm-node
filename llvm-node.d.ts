@@ -142,13 +142,13 @@ declare namespace llvm {
     allocatedType: Type;
     readonly arraySize: Value | null;
 
-    private constructor();
+    protected constructor();
   }
 
   class BasicBlock extends Value {
     static create(context: LLVMContext, name?: string, parent?: Function, insertBefore?: BasicBlock): BasicBlock;
 
-    private constructor();
+    protected constructor();
 
     readonly parent?: Function;
     readonly empty: boolean;
@@ -185,7 +185,7 @@ declare namespace llvm {
 
     static getInfinity(type: Type, negative?: boolean /* = false */): Constant;
 
-    private constructor();
+    protected constructor();
 
     readonly value: number;
   }
@@ -197,7 +197,7 @@ declare namespace llvm {
 
     static getTrue(context: LLVMContext): ConstantInt;
 
-    private constructor();
+    protected constructor();
 
     readonly value: number;
 
@@ -207,7 +207,7 @@ declare namespace llvm {
   class ConstantPointerNull extends Constant {
     static get(pointerType: PointerType): ConstantPointerNull;
 
-    private constructor();
+    protected constructor();
   }
 
   class ConstantArray extends Constant {
@@ -219,13 +219,13 @@ declare namespace llvm {
 
     static getString(llvmContext: LLVMContext, value: string): Constant;
 
-    private constructor();
+    protected constructor();
   }
 
   class ConstantStruct extends Constant {
     static get(structType: StructType, values: Constant[]): Constant;
 
-    private constructor();
+    protected constructor();
   }
 
   class Function extends Constant {
@@ -235,7 +235,7 @@ declare namespace llvm {
     visibility: VisibilityTypes;
     type: PointerType & { elementType: FunctionType };
 
-    private constructor();
+    protected constructor();
 
     addAttribute(index: number, attribute: Attribute.AttrKind): void;
 
@@ -281,7 +281,7 @@ declare namespace llvm {
   }
 
   class PhiNode extends Value {
-    private constructor();
+    protected constructor();
 
     readonly elementType: Type;
 
@@ -291,7 +291,7 @@ declare namespace llvm {
   class CallInst extends Value {
     callingConv: CallingConv;
 
-    private constructor();
+    protected constructor();
 
     addDereferenceableAttr(index: number, size: number): void;
 
@@ -351,7 +351,7 @@ declare namespace llvm {
   }
 
   class UndefValue {
-    private constructor();
+    protected constructor();
 
     static get(type: Type): UndefValue;
   }
@@ -462,7 +462,7 @@ declare namespace llvm {
   }
 
   class IntegerType extends Type {
-    private constructor();
+    protected constructor();
 
     getBitWidth(): number;
   }
@@ -479,7 +479,7 @@ declare namespace llvm {
     readonly isVarArg: boolean;
     readonly numParams: number;
 
-    private constructor();
+    protected constructor();
 
     getParams(): Type[];
 
@@ -491,7 +491,7 @@ declare namespace llvm {
 
     elementType: Type;
 
-    private constructor();
+    protected constructor();
   }
 
   class ArrayType extends Type {
@@ -500,7 +500,7 @@ declare namespace llvm {
     readonly elementType: Type;
     readonly numElements: number;
 
-    private constructor();
+    protected constructor();
   }
 
   class StructType extends Type {
@@ -511,7 +511,7 @@ declare namespace llvm {
     name: string | undefined;
     readonly numElements: number;
 
-    private constructor();
+    protected constructor();
 
     getElementType(index: number): Type;
 
@@ -697,7 +697,7 @@ declare namespace llvm {
 
   // support
   class TargetRegistry {
-    private constructor();
+    protected constructor();
 
     static lookupTarget(target: string): Target;
   }
